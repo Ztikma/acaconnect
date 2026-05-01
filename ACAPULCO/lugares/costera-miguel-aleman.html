@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcaConnect - Detalle de la Costera Miguel Alemán</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #F5A623;
+      --dark: #1a1a2e;
+      --dark-card: rgba(255, 255, 255, 0.06);
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.75);
+      --blue: #00C2FF;
+      --pink: #FF3CAC;
+      --orange: #FF7A00;
+      --green: #00D084;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(245,166,35,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(0,194,255,0.18), transparent 28%),
+        linear-gradient(135deg, #141426, #1a1a2e, #10243d);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .top-bar {
+      padding: 15px 5%;
+      background: rgba(0,0,0,0.45);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .btn-back {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--gold), var(--orange));
+      padding: 10px 18px;
+      border-radius: 30px;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 22px rgba(245,166,35,0.45);
+    }
+
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 45px auto 55px;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+
+    .main-info,
+    .sidebar,
+    .exp-card,
+    .nearby-card,
+    .time-item,
+    .tips-box {
+      background: var(--dark-card);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .main-info {
+      padding: 32px;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      margin-bottom: 10px;
+      line-height: 1.1;
+      color: white;
+      text-shadow: 0 0 18px rgba(255,255,255,0.15);
+    }
+
+    .main-info h2,
+    .section-head h2,
+    .gallery-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      text-shadow: 0 0 16px rgba(245,166,35,0.25);
+    }
+
+    .main-info h2 {
+      font-size: 1.8rem;
+      margin: 20px 0 15px;
+    }
+
+    .main-info p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .sidebar {
+      padding: 30px;
+      height: fit-content;
+    }
+
+    .quick-fact {
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.22);
+      padding: 16px;
+      border-radius: 16px;
+      border-left: 5px solid var(--gold);
+    }
+
+    .quick-fact:nth-child(2) {
+      border-left-color: var(--blue);
+    }
+
+    .quick-fact:nth-child(3) {
+      border-left-color: var(--pink);
+    }
+
+    .quick-fact:nth-child(4) {
+      border-left-color: var(--green);
+    }
+
+    .quick-fact span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .quick-fact p {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .extra-section {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 5%;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-head .mini-title {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-top: 8px;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 12px auto 0;
+      font-size: 1.05rem;
+    }
+
+    .experiencias-grid,
+    .nearby-grid,
+    .tips-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+    }
+
+    .exp-card {
+      padding: 28px;
+      transition: 0.3s;
+    }
+
+    .exp-card:hover,
+    .nearby-card:hover,
+    .time-item:hover,
+    .photo-card:hover,
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 45px rgba(245,166,35,0.25);
+    }
+
+    .exp-icon {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+    }
+
+    .exp-card h3,
+    .nearby-body h3,
+    .time-content h3 {
+      color: white;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .exp-card p,
+    .nearby-body p,
+    .time-content p,
+    .tip,
+    .feature-overlay p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 320px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+      transition: 0.3s;
+    }
+
+    .feature-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .feature-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.15));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+    }
+
+    .feature-overlay span,
+    .nearby-tag,
+    .time {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .feature-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      color: white;
+      font-size: 2rem;
+      margin: 8px 0;
+    }
+
+    .nearby-card {
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .nearby-img {
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .nearby-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nearby-body {
+      padding: 22px;
+    }
+
+    .nearby-info {
+      margin-top: 14px;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: rgba(0,0,0,0.25);
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .time-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 22px;
+      transition: 0.3s;
+    }
+
+    .tips-box {
+      padding: 32px;
+    }
+
+    .tip {
+      background: rgba(0,0,0,0.25);
+      padding: 18px;
+      border-radius: 16px;
+    }
+
+    .tip strong {
+      color: var(--gold);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .wide-header-container {
+      width: 100%;
+      height: fit-content;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      border: 3px solid rgba(245,166,35,0.65);
+    }
+
+    .wide-header-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 52vh;
+      object-fit: cover;
+    }
+
+    .gallery-section {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 5%;
+    }
+
+    .gallery-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .photo-card {
+      border-radius: 20px;
+      overflow: hidden;
+      height: 250px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,0.12);
+      transition: 0.3s;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .photo-card img:hover {
+      transform: scale(1.08);
+    }
+
+    @media (max-width: 768px) {
+      .content-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .time-item {
+        grid-template-columns: 1fr;
+      }
+
+      .main-info h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <a href="/index.html#atracciones" class="btn-back">⬅ Volver al mapa</a>
+  </div>
+
+  <main class="content-wrapper">
+
+    <article class="main-info">
+      <div class="page-subtitle">Corredor turístico</div>
+      <h1 class="page-title">Costera Miguel Alemán</h1>
+      <h2>El corazón turístico y comercial de Acapulco</h2>
+
+      <p>
+        La Costera Miguel Alemán es una de las avenidas más importantes y famosas de Acapulco.
+        Recorre gran parte de la bahía y concentra hoteles, restaurantes, bares, plazas comerciales,
+        playas y centros de entretenimiento, por lo que es considerada una de las zonas más visitadas
+        por turistas nacionales e internacionales.
+      </p>
+
+      <p>
+        Caminar por la Costera permite disfrutar el ambiente moderno del puerto, observar la vista
+        hacia el mar y encontrar diferentes actividades durante el día y la noche. Es un lugar ideal
+        para comer, pasear, hospedarse, comprar recuerdos o simplemente conocer el movimiento turístico
+        de Acapulco.
+      </p>
+    </article>
+
+    <aside class="sidebar">
+      <div class="quick-fact">
+        <span>📍 Ubicación</span>
+        <p>Zona Dorada, Acapulco</p>
+      </div>
+
+      <div class="quick-fact">
+        <span>🕐 Mejor horario</span>
+        <p>Tarde y noche</p>
+      </div>
+
+      <div class="quick-fact">
+        <span>🎡 Actividades</span>
+        <p>Playas, bares, hoteles, restaurantes, compras y vida nocturna</p>
+      </div>
+
+      <div class="quick-fact">
+        <span>⭐ Tipo de lugar</span>
+        <p>Avenida turística principal</p>
+      </div>
+    </aside>
+
+  </main>
+
+  <section class="extra-section">
+    <div class="section-head">
+      <div class="mini-title">Experiencias</div>
+      <h2>Qué hacer en la Costera Miguel Alemán</h2>
+      <p>
+        La Costera es una zona completa para turistas: aquí puedes caminar frente a la bahía,
+        visitar playas, comer, hospedarte, salir de noche y conocer algunos de los puntos más
+        representativos de Acapulco.
+      </p>
+    </div>
+
+    <div class="experiencias-grid">
+      <div class="exp-card">
+        <div class="exp-icon">🏖️</div>
+        <h3>Playas cercanas</h3>
+        <p>
+          Desde la Costera puedes llegar fácilmente a playas como Condesa, Icacos y Hornos,
+          ideales para nadar, caminar o tomar fotos frente a la bahía.
+        </p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">🍽️</div>
+        <h3>Restaurantes y mariscos</h3>
+        <p>
+          La zona cuenta con restaurantes de comida mexicana, mariscos, cafeterías y espacios
+          con vista al mar para disfrutar durante el día o la noche.
+        </p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">🌙</div>
+        <h3>Vida nocturna</h3>
+        <p>
+          Al caer la noche, la Costera se vuelve una de las zonas con más ambiente gracias a sus
+          bares, música, luces y movimiento turístico.
+        </p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">🛍️</div>
+        <h3>Compras y paseo</h3>
+        <p>
+          Puedes recorrer plazas, tiendas, puestos de recuerdos y zonas comerciales cercanas
+          para complementar tu visita.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="extra-section">
+    <div class="section-head">
+      <div class="mini-title">Ambiente urbano</div>
+      <h2>La avenida que conecta la bahía</h2>
+      <p>
+        Sus hoteles, restaurantes y playas hacen que la Costera sea uno de los lugares más activos
+        y representativos del Acapulco Dorado.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <img src="/imagenes/costera_noche.jpg" alt="Costera Miguel Alemán de noche" onerror="this.src='/imagenes/costera3.jpg'">
+        <div class="feature-overlay">
+          <span>Noche</span>
+          <h3>Luces y vida nocturna</h3>
+          <p>
+            De noche, la Costera muestra su lado más activo con hoteles iluminados, bares, restaurantes
+            y movimiento turístico.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <img src="/imagenes/costera_playa.jpg" alt="Playa cercana a la Costera Miguel Alemán" onerror="this.src='/imagenes/CosteraMA.jpg'">
+        <div class="feature-overlay">
+          <span>Bahía</span>
+          <h3>Playas y vista al mar</h3>
+          <p>
+            La avenida corre junto a la bahía, por lo que muchos puntos ofrecen vistas directas al mar
+            y acceso a playas cercanas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="extra-section">
+    <div class="section-head">
+      <div class="mini-title">Cerca de la Costera</div>
+      <h2>Hoteles, bares y puntos recomendados</h2>
+      <p>
+        Esta zona concentra varias opciones para hospedarse, comer, tomar algo y visitar lugares
+        emblemáticos sin alejarse demasiado.
+      </p>
+    </div>
+
+    <div class="nearby-grid">
+      <div class="nearby-card">
+        <div class="nearby-img">
+          <img src="/imagenes/costera_hotel.jpg" alt="Hoteles en la Costera Miguel Alemán" onerror="this.src='/imagenes/CosteraMA.jpg'">
+        </div>
+        <div class="nearby-body">
+          <div class="nearby-tag">Hospedaje</div>
+          <h3>Hoteles en Zona Dorada</h3>
+          <p>
+            En la zona se encuentran hoteles reconocidos y hospedajes cerca de la playa,
+            ideales para quienes quieren estar en el centro del ambiente turístico.
+          </p>
+          <div class="nearby-info">🏨 HS HOTSSON · Copacabana · Emporio · Fiesta Americana</div>
+        </div>
+      </div>
+
+      <div class="nearby-card">
+        <div class="nearby-img">
+          <img src="/imagenes/costera_restaurante.jpg" alt="Restaurantes en la Costera Miguel Alemán" onerror="this.src='/imagenes/costera1.jpg'">
+        </div>
+        <div class="nearby-body">
+          <div class="nearby-tag">Restaurantes</div>
+          <h3>Comida y mariscos</h3>
+          <p>
+            Hay restaurantes de mariscos, comida mexicana, cafeterías y lugares para cenar con ambiente turístico.
+          </p>
+          <div class="nearby-info">🍤 Sunset Lounge · Condimento · Bocana Beach</div>
+        </div>
+      </div>
+
+      <div class="nearby-card">
+        <div class="nearby-img">
+          <img src="/imagenes/costera_diana.jpg" alt="La Diana Cazadora en Acapulco" onerror="this.src='/imagenes/costera2.jpg'">
+        </div>
+        <div class="nearby-body">
+          <div class="nearby-tag">Punto icónico</div>
+          <h3>La Diana Cazadora</h3>
+          <p>
+            Es uno de los puntos más conocidos de la Costera y funciona como referencia para turistas
+            que recorren la Zona Dorada.
+          </p>
+          <div class="nearby-info">📍 Monumento y punto de encuentro</div>
+        </div>
+      </div>
+
+      <div class="nearby-card">
+        <div class="nearby-img">
+          <img src="/imagenes/costera_bar.jpg" alt="Bares en la Costera Miguel Alemán" onerror="this.src='/imagenes/costera3.jpg'">
+        </div>
+        <div class="nearby-body">
+          <div class="nearby-tag">Bares y noche</div>
+          <h3>Ambiente nocturno</h3>
+          <p>
+            La Costera es una zona ideal para salir por la noche, escuchar música, caminar y disfrutar
+            el ambiente turístico del puerto.
+          </p>
+          <div class="nearby-info">🌙 Bares · Música · Restaurantes · Paseo nocturno</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="extra-section">
+    <div class="section-head">
+      <div class="mini-title">Plan recomendado</div>
+      <h2>Cómo aprovechar mejor tu recorrido</h2>
+      <p>
+        Este plan convierte la página en una guía más completa para quien quiera recorrer la Costera.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time">10:00 AM</div>
+        <div class="time-content">
+          <h3>Desayuno y paseo inicial</h3>
+          <p>
+            Inicia con un desayuno cerca de la Zona Dorada y camina por la avenida para ubicar playas,
+            tiendas y restaurantes.
+          </p>
+        </div>
+      </div>
+
+      <div class="time-item">
+        <div class="time">12:00 PM</div>
+        <div class="time-content">
+          <h3>Playa Condesa o Icacos</h3>
+          <p>
+            Aprovecha el día para visitar una playa cercana, tomar fotos y disfrutar el mar.
+          </p>
+        </div>
+      </div>
+
+      <div class="time-item">
+        <div class="time">04:00 PM</div>
+        <div class="time-content">
+          <h3>Comida y compras</h3>
+          <p>
+            Después de la playa, puedes comer mariscos, visitar una plaza o comprar recuerdos.
+          </p>
+        </div>
+      </div>
+
+      <div class="time-item">
+        <div class="time">08:00 PM</div>
+        <div class="time-content">
+          <h3>Costera de noche</h3>
+          <p>
+            Por la noche, la zona se llena de luces, música y movimiento. Es buen momento para cenar
+            o caminar por los puntos más activos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="extra-section">
+    <div class="tips-box">
+      <div class="section-head" style="margin-bottom: 10px;">
+        <div class="mini-title">Tips útiles</div>
+        <h2>Consejos antes de ir</h2>
+        <p>
+          Recomendaciones sencillas para que el recorrido por la Costera sea más cómodo.
+        </p>
+      </div>
+
+      <div class="tips-list">
+        <div class="tip">
+          <strong>👟 Usa calzado cómodo</strong>
+          La Costera es ideal para caminar, así que conviene llevar tenis o sandalias cómodas.
+        </div>
+
+        <div class="tip">
+          <strong>🌙 Visítala también de noche</strong>
+          De noche se aprecia mejor el ambiente urbano, las luces y la vida turística.
+        </div>
+
+        <div class="tip">
+          <strong>💵 Lleva efectivo</strong>
+          Algunos puestos, taxis o servicios pequeños pueden no aceptar tarjeta.
+        </div>
+
+        <div class="tip">
+          <strong>📱 Cuida tus pertenencias</strong>
+          Como es una zona concurrida, es mejor llevar lo necesario y estar atento.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+
+    <div class="wide-header-container">
+      <img src="/imagenes/CosteraMA.jpg" class="wide-header-image" alt="Vista panorámica de la Costera Miguel Alemán">
+    </div>
+
+    <h2>Más Imágenes</h2>
+
+    <div class="photo-grid">
+      <div class="photo-card">
+        <img src="/imagenes/costera1.jpg" alt="Vista urbana de la Costera Miguel Alemán">
+      </div>
+
+      <div class="photo-card">
+        <img src="/imagenes/costera2.jpg" alt="Bahía de Acapulco desde la Costera">
+      </div>
+
+      <div class="photo-card">
+        <img src="/imagenes/costera3.jpg" alt="Zona turística de la Costera Miguel Alemán">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

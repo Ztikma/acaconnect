@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcaConnect - Detalle de Isla La Roqueta</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #ffcc00;
+      --dark: #150025;
+      --dark-card: rgba(255, 255, 255, 0.10);
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.82);
+      --pink: #ff007f;
+      --orange: #ff7a00;
+      --yellow: #ffe600;
+      --green: #00ff85;
+      --cyan: #00d9ff;
+      --blue: #304ffe;
+      --purple: #b000ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,0,127,0.30), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(0,217,255,0.30), transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(176,0,255,0.28), transparent 30%),
+        linear-gradient(135deg, #12001f, #1b0636, #001f3f, #062b23);
+      color: var(--text-main);
+      line-height: 1.6;
+      background-attachment: fixed;
+    }
+
+    .top-bar {
+      padding: 15px 5%;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(8px);
+      border-bottom: 3px solid var(--pink);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .btn-back {
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--pink), var(--orange), var(--yellow), var(--green), var(--cyan), var(--purple));
+      padding: 10px 18px;
+      border-radius: 30px;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255,255,255,0.45);
+    }
+
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 40px auto 50px;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+
+    .main-info,
+    .sidebar,
+    .exp-card,
+    .nearby-card,
+    .time-item,
+    .tips-box {
+      background: rgba(255,255,255,0.10);
+      border: 2px solid rgba(255,255,255,0.18);
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .main-info {
+      padding: 32px;
+    }
+
+    .main-info .page-subtitle {
+      font-size: 1rem;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      font-weight: 800;
+    }
+
+    .main-info .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      margin-bottom: 10px;
+      line-height: 1.1;
+      color: var(--yellow);
+      text-shadow: 0 0 18px rgba(255,230,0,0.35);
+    }
+
+    .main-info h2,
+    .section-head h2,
+    .gallery-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--pink);
+      text-shadow: 0 0 16px rgba(255,0,127,0.35);
+    }
+
+    .main-info h2 {
+      font-size: 1.8rem;
+      margin: 20px 0 15px;
+    }
+
+    .main-info p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .sidebar {
+      padding: 30px;
+      height: fit-content;
+    }
+
+    .quick-fact {
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.22);
+      padding: 16px;
+      border-radius: 16px;
+      border-left: 5px solid var(--cyan);
+    }
+
+    .quick-fact:nth-child(2) {
+      border-left-color: var(--green);
+    }
+
+    .quick-fact:nth-child(3) {
+      border-left-color: var(--orange);
+    }
+
+    .quick-fact:nth-child(4) {
+      border-left-color: var(--purple);
+    }
+
+    .quick-fact span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--yellow);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .quick-fact p {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .extra-section {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 5%;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-head .mini-title {
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-top: 8px;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 12px auto 0;
+      font-size: 1.05rem;
+    }
+
+    .experiencias-grid,
+    .nearby-grid,
+    .tips-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+    }
+
+    .exp-card {
+      padding: 28px;
+      transition: 0.3s;
+    }
+
+    .exp-card:hover,
+    .nearby-card:hover,
+    .time-item:hover,
+    .photo-card:hover,
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 45px rgba(255,0,127,0.28);
+    }
+
+    .exp-icon {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+    }
+
+    .exp-card h3,
+    .nearby-body h3,
+    .time-content h3 {
+      color: var(--yellow);
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .exp-card p,
+    .nearby-body p,
+    .time-content p,
+    .tip,
+    .feature-overlay p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 320px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+      transition: 0.3s;
+    }
+
+    .feature-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .feature-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+    }
+
+    .feature-overlay span,
+    .nearby-tag,
+    .time {
+      color: var(--cyan);
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .feature-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--yellow);
+      font-size: 2rem;
+      margin: 8px 0;
+    }
+
+    .nearby-card {
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .nearby-img {
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .nearby-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nearby-body {
+      padding: 22px;
+    }
+
+    .nearby-info {
+      margin-top: 14px;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: rgba(0,0,0,0.25);
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .time-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 22px;
+      transition: 0.3s;
+    }
+
+    .tips-box {
+      padding: 32px;
+    }
+
+    .tip {
+      background: rgba(0,0,0,0.25);
+      padding: 18px;
+      border-radius: 16px;
+    }
+
+    .tip strong {
+      color: var(--yellow);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .wide-header-container {
+      width: 100%;
+      height: fit-content;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      border: 3px solid var(--pink);
+    }
+
+    .wide-header-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 52vh;
+      object-fit: cover;
+    }
+
+    .gallery-section {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 5%;
+    }
+
+    .gallery-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .photo-card {
+      border-radius: 20px;
+      overflow: hidden;
+      height: 250px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 3px solid var(--cyan);
+      transition: 0.3s;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .photo-card img:hover {
+      transform: scale(1.08);
+    }
+
+    @media (max-width: 768px) {
+      .content-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .time-item {
+        grid-template-columns: 1fr;
+      }
+
+      .main-info h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <a href="/index.html#atracciones" class="btn-back">⬅ Volver al mapa</a>
+  </div>
+
+  <main class="content-wrapper">
+
+    <article class="main-info">
+      <div class="page-subtitle">Isla Natural</div>
+      <h1 class="page-title">Isla La Roqueta</h1>
+      <h2>Un paraíso natural frente a Acapulco</h2>
+
+      <p>
+        Isla La Roqueta es uno de los atractivos naturales más visitados de Acapulco.
+        Se encuentra frente a las playas Caleta y Caletilla, y destaca por su ambiente tranquilo,
+        sus aguas claras y sus paisajes rodeados de vegetación. Es un lugar ideal para quienes
+        buscan alejarse un poco del ruido de la ciudad y disfrutar una experiencia más relajada.
+      </p>
+
+      <p>
+        Para llegar a la isla se puede tomar una lancha desde la zona de Caleta. Durante el recorrido
+        se pueden observar vistas de la bahía, formaciones rocosas y diferentes puntos turísticos.
+        En La Roqueta también se pueden realizar actividades como nadar, caminar, descansar en la playa
+        y practicar snorkel en algunas zonas cercanas.
+      </p>
+    </article>
+
+    <aside class="sidebar">
+      <div class="quick-fact">
+        <span>📍 Ubicación</span>
+        <p>Frente a Playa Caleta, Acapulco</p>
+      </div>
+
+      <div class="quick-fact">
+        <span>🚤 Acceso</span>
+        <p>Lancha desde Caleta o Caletilla</p>
+      </div>
+
+      <div class="quick-fact">
+        <span>🤿 Actividades</span>
+        <p>Snorkel, paseo en lancha, playa y caminata</p>
+      </div>
+
+      <div class="quick-fact">
+        <span>⭐ Tipo de lugar</span>
+        <p>Isla natural y turística</p>
+      </div>
+    </aside>
+
+  </main>
+
+  <section class="extra-section">
+    <div class="section-head">
+      <div class="mini-title">Experiencias</div>
+      <h2>Qué hacer en Isla La Roqueta</h2>
+      <p>
+        La Roqueta no solo es playa; también es una experiencia natural donde se combinan paseos en lancha,
+        actividades acuáticas, senderos y vistas únicas de la bahía de Acapulco.
+      </p>
+    </div>
+
+    <div class="experiencias-grid">
+      <div class="exp-card">
+        <div class="exp-icon">🚤</div>
+        <h3>Lancha de fondo de cristal</h3>
+        <p>
+          Una de las formas más tradicionales de llegar a la isla. Durante el recorrido se pueden apreciar
+          zonas del mar, formaciones rocosas y la vista de la bahía.
+        </p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">🤿</div>
+        <h3>Snorkel y buceo</h3>
+        <p>
+          Sus aguas tranquilas permiten observar parte del ecosistema marino. Es una actividad ideal
+          para quienes buscan aventura sin alejarse demasiado de la playa.
+        </p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">🥾</div>
+        <h3>Senderismo ligero</h3>
+        <p>
+          La isla cuenta con zonas naturales para caminar, observar vegetación y disfrutar un ambiente
+          más relajado que el de las zonas más concurridas del puerto.
+        </p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">🏖️</div>
+        <h3>Descanso en playa</h3>
+        <p>
+          Es perfecta para nadar, tomar fotos, descansar bajo una palapa y disfrutar un día tranquilo
+          frente al mar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="extra-section">
+    <div class="section-head">
+      <div class="mini-title">Aventura visual</div>
+      <h2>Una visita que empieza desde el mar</h2>
+      <p>
+        El camino hacia La Roqueta es parte del atractivo: el recorrido en lancha permite observar
+        Acapulco desde otra perspectiva y llegar a una zona más natural.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <img src="/imagenes/roqueta_lancha.jpg" alt="Lancha hacia Isla La Roqueta" onerror="this.src='/imagenes/laroqueta1.jpg'">
+        <div class="feature-overlay">
+          <span>Recorrido</span>
+          <h3>Lancha hacia la isla</h3>
+          <p>
+            El traslado desde Caleta es corto, pero ofrece una vista muy bonita de la bahía y del entorno rocoso.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <img src="/imagenes/roqueta_snorkel.jpg" alt="Snorkel en Isla La Roqueta" onerror="this.src='/imagenes/laroqueta2.jpg'">
+        <div class="feature-overlay">
+          <span>Naturaleza</span>
+          <h3>Mar cristalino</h3>
+          <p>
+            Sus aguas son uno de los principales motivos por los que visitantes practican snorkel y actividades acuáticas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="extra-section">
+    <div class="section-head">
+      <div class="mini-title">Cerca de La Roqueta</div>
+      <h2>Restaurantes, bares y hoteles cercanos</h2>
+      <p>
+        Como la isla se visita principalmente desde Caleta y Caletilla, las mejores opciones para comer,
+        hospedarse o tomar algo se encuentran en esa zona cercana al muelle.
+      </p>
+    </div>
+
+    <div class="nearby-grid">
+      <div class="nearby-card">
+        <div class="nearby-img">
+          <img src="/imagenes/roqueta_restaurante.jpg" alt="Restaurante cercano a Caleta" onerror="this.src='/imagenes/laroqueta3.jpg'">
+        </div>
+        <div class="nearby-body">
+          <div class="nearby-tag">Restaurante y bar</div>
+          <h3>Restaurantes en Caleta</h3>
+          <p>
+            La zona de Caleta cuenta con restaurantes de ambiente playero, mariscos, comida mexicana
+            y bebidas para disfrutar antes o después del paseo a La Roqueta.
+          </p>
+          <div class="nearby-info">📍 Zona Caleta · Comida y bebidas</div>
+        </div>
+      </div>
+
+      <div class="nearby-card">
+        <div class="nearby-img">
+          <img src="/imagenes/roqueta_hotel.jpg" alt="Hotel cercano a Caleta" onerror="this.src='/imagenes/LaRoquetauwu.jpg'">
+        </div>
+        <div class="nearby-body">
+          <div class="nearby-tag">Hospedaje</div>
+          <h3>Hoteles en Caleta</h3>
+          <p>
+            La zona cercana a Caleta cuenta con hoteles y hospedajes ideales para quienes quieren estar
+            cerca del muelle, la playa y los recorridos hacia la isla.
+          </p>
+          <div class="nearby-info">🏨 Cerca del muelle · Zona tradicional</div>
+        </div>
+      </div>
+
+      <div class="nearby-card">
+        <div class="nearby-img">
+          <img src="/imagenes/laroqueta1.jpg" alt="Playa Caleta y Caletilla">
+        </div>
+        <div class="nearby-body">
+          <div class="nearby-tag">Playa cercana</div>
+          <h3>Caleta y Caletilla</h3>
+          <p>
+            Son playas tradicionales de Acapulco y funcionan como punto principal para tomar lanchas
+            hacia La Roqueta.
+          </p>
+          <div class="nearby-info">🏖️ Punto de salida a la isla</div>
+        </div>
+      </div>
+
+      <div class="nearby-card">
+        <div class="nearby-img">
+          <img src="/imagenes/laroqueta2.jpg" alt="Vista natural de La Roqueta">
+        </div>
+        <div class="nearby-body">
+          <div class="nearby-tag">Naturaleza</div>
+          <h3>Playas escondidas</h3>
+          <p>
+            Además de su playa principal, La Roqueta destaca por zonas más tranquilas y rincones naturales
+            perfectos para fotos y descanso.
+          </p>
+          <div class="nearby-info">🌿 Ambiente natural y relajado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="extra-section">
+    <div class="section-head">
+      <div class="mini-title">Plan recomendado</div>
+      <h2>Cómo aprovechar mejor tu visita</h2>
+      <p>
+        Este plan orienta al turista como si fuera una guía real para disfrutar mejor el recorrido.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time">10:00 AM</div>
+        <div class="time-content">
+          <h3>Llegada a Caleta</h3>
+          <p>
+            Llegar temprano ayuda a encontrar mejor lugar, tomar fotos y comprar el paseo en lancha con calma.
+          </p>
+        </div>
+      </div>
+
+      <div class="time-item">
+        <div class="time">11:00 AM</div>
+        <div class="time-content">
+          <h3>Traslado en lancha</h3>
+          <p>
+            El recorrido hacia La Roqueta es parte de la experiencia, ideal para ver la bahía desde el mar.
+          </p>
+        </div>
+      </div>
+
+      <div class="time-item">
+        <div class="time">12:00 PM</div>
+        <div class="time-content">
+          <h3>Playa y snorkel</h3>
+          <p>
+            Ya en la isla se puede nadar, descansar, caminar por la zona o practicar actividades acuáticas.
+          </p>
+        </div>
+      </div>
+
+      <div class="time-item">
+        <div class="time">03:00 PM</div>
+        <div class="time-content">
+          <h3>Comida en Caleta</h3>
+          <p>
+            Al regresar, una buena opción es comer mariscos o comida mexicana en restaurantes cercanos al muelle.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="extra-section">
+    <div class="tips-box">
+      <div class="section-head" style="margin-bottom: 10px;">
+        <div class="mini-title">Tips útiles</div>
+        <h2>Consejos antes de ir</h2>
+        <p>
+          Detalles sencillos que hacen que la visita sea más cómoda, segura y agradable.
+        </p>
+      </div>
+
+      <div class="tips-list">
+        <div class="tip">
+          <strong>☀️ Lleva bloqueador</strong>
+          El sol puede sentirse fuerte durante el paseo y en la playa.
+        </div>
+
+        <div class="tip">
+          <strong>💵 Lleva efectivo</strong>
+          Algunos servicios pequeños pueden no aceptar tarjeta.
+        </div>
+
+        <div class="tip">
+          <strong>📱 Protege tu celular</strong>
+          Una funda contra agua ayuda mucho si tomas fotos en lancha.
+        </div>
+
+        <div class="tip">
+          <strong>🕐 Ve temprano</strong>
+          Así aprovechas mejor la luz, la playa y el recorrido.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+
+    <div class="wide-header-container">
+      <img src="/imagenes/LaRoquetauwu.jpg" class="wide-header-image" alt="Vista panorámica de Isla La Roqueta">
+    </div>
+
+    <h2>Más Imágenes</h2>
+
+    <div class="photo-grid">
+      <div class="photo-card">
+        <img src="/imagenes/laroqueta1.jpg" alt="Vista de Isla La Roqueta">
+      </div>
+
+      <div class="photo-card">
+        <img src="/imagenes/laroqueta2.jpg" alt="Playa de Isla La Roqueta">
+      </div>
+
+      <div class="photo-card">
+        <img src="/imagenes/laroqueta3.jpg" alt="Mar y naturaleza en Isla La Roqueta">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
