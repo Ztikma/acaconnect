@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcaConnect - Detalle de Playa Condesa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* NUEVA PALETA DE COLORES: VIBRAS DE PLAYA CONDESA */
+    :root {
+      --ocean-dark: #0a192f;   /* Azul profundo del mar de noche */
+      --sand-gold: #FFD700;    /* Dorado de la arena y el sol */
+      --water-cyan: #00E5FF;   /* Cyan vibrante del agua y vida nocturna */
+      --coral-sunset: #FF6B6B; /* Tonos rojizos de los atardeceres */
+      --dark-card: rgba(0, 229, 255, 0.05); /* Tarjetas con ligero tinte cyan */
+      --text-main: #f0f4f8;
+      --text-muted: rgba(240, 244, 248, 0.7);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--ocean-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* BARRA SUPERIOR */
+    .top-bar {
+      padding: 15px 5%;
+      background: rgba(10, 25, 47, 0.8);
+      position: relative;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    }
+    .btn-back {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      background: rgba(255,255,255,0.05);
+      padding: 8px 16px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+    .btn-back:hover { 
+      background: rgba(0, 229, 255, 0.1); 
+      color: var(--water-cyan); 
+      border-color: var(--water-cyan);
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 40px auto 50px; 
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+
+    /* COLUMNA DE TEXTO */
+    .main-info .page-subtitle {
+      font-size: 1rem;
+      color: var(--water-cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+    .main-info .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      margin-bottom: 10px;
+      line-height: 1.1;
+      color: var(--sand-gold);
+    }
+    .main-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin: 20px 0 15px;
+      color: var(--coral-sunset);
+    }
+    .main-info p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    /* BARRA LATERAL (DATOS RÁPIDOS) */
+    .sidebar {
+      background: var(--dark-card);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      height: fit-content;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .quick-fact {
+      margin-bottom: 20px;
+    }
+    .quick-fact span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--water-cyan);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .quick-fact p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .alert-text {
+      color: var(--coral-sunset) !important;
+      font-size: 0.95rem !important;
+    }
+
+    /* SECCIÓN DE HOTELES */
+    .hotels-section {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 5%;
+    }
+    .hotels-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--sand-gold);
+      margin-bottom: 25px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+      padding-bottom: 10px;
+    }
+    .hotels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .hotel-card {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, border-color 0.3s;
+    }
+    .hotel-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--water-cyan);
+      background: rgba(0, 229, 255, 0.05);
+    }
+    .hotel-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 5px;
+    }
+    .hotel-stars { color: var(--sand-gold); font-size: 0.9rem; margin-bottom: 10px; }
+    .hotel-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px; }
+    .btn-book {
+      display: inline-block;
+      background: var(--water-cyan);
+      color: var(--ocean-dark);
+      padding: 8px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+    .btn-book:hover { background: #00b8cc; }
+
+    /* ESTILO DE LA IMAGEN ALARGADA EN LA GALERÍA */
+    .wide-header-container {
+      width: 100%;
+      height: fit-content;
+      overflow: hidden;
+      margin-bottom: 40px; 
+      border-radius: 20px; 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+    .wide-header-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 50vh;
+      object-fit: cover;
+    }
+
+    /* GALERÍA DE IMÁGENES EXTRA */
+    .gallery-section {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 5%;
+    }
+    .gallery-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--sand-gold);
+      margin-bottom: 30px;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .photo-card {
+      border-radius: 15px;
+      overflow: hidden;
+      height: 250px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .photo-card img:hover { transform: scale(1.08); }
+
+    /* ADAPTACIÓN PARA CELULARES */
+    @media (max-width: 768px) {
+      .content-wrapper { grid-template-columns: 1fr; }
+      .main-info h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="/index.html#atracciones" class="btn-back">⬅ Volver al mapa</a>
+  </div>
+
+  <main class="content-wrapper">
+    
+    <article class="main-info">
+      <div class="page-subtitle">Playa Vibrante</div>
+      <h1 class="page-title">Playa Condesa</h1>
+      <h2>El corazón dorado y social de Acapulco</h2>
+      <p>
+        Ubicada justo en el centro neurálgico de la Zona Dorada, Playa Condesa es la franja de arena más animada de toda la bahía. Famosa por su ambiente juvenil, su arena suave y la música que siempre suena de fondo, es el punto de encuentro perfecto para quienes buscan combinar bronceado, deportes acuáticos y la auténtica vida social del puerto.
+      </p>
+      <p>
+        <strong>¿Qué la hace especial?</strong> A diferencia de playas más tranquilas, Condesa está rodeada de clubes de playa, restaurantes icónicos y bares. Durante el día, el cielo se llena de paracaídas (parasailing) y el mar de motos acuáticas. Al caer el sol, la zona se transforma, convirtiéndose en el preámbulo perfecto para disfrutar de la vida nocturna de Acapulco. Hacia el final de la playa (cerca de la piedra del Morro), se encuentra una zona muy popular y amigable con la comunidad LGBTQ+.
+      </p>
+    </article>
+
+    <aside class="sidebar">
+      <div class="quick-fact">
+        <span>📍 Ubicación</span>
+        <p>Costera Miguel Alemán, Zona Dorada</p>
+      </div>
+      <div class="quick-fact">
+        <span>🌊 Oleaje y Seguridad</span>
+        <p>Moderado a Fuerte.</p>
+        <p class="alert-text">⚠️ Precaución con la resaca. Haz caso a las banderas salvavidas.</p>
+      </div>
+      <div class="quick-fact">
+        <span>🏄 Actividades Clave</span>
+        <p>Bungee jump, Parasailing, Motos acuáticas, Vóley playa.</p>
+      </div>
+      <div class="quick-fact">
+        <span>⭐ Vibe / Ambiente</span>
+        <p>Juvenil, Fiestero, Social</p>
+      </div>
+    </aside>
+
+  </main>
+
+  <section class="hotels-section">
+    <h2>Hospedaje a unos pasos de la arena</h2>
+    <div class="hotels-grid">
+      
+      <div class="hotel-card">
+        <div class="hotel-name">Fiesta Americana Acapulco Villas</div>
+        <div class="hotel-stars">⭐⭐⭐⭐⭐</div>
+        <p class="hotel-desc">Ubicación inmejorable con acceso directo a Playa Condesa. Cuenta con albercas espectaculares, restaurantes y un ambiente familiar pero vibrante.</p>
+        <a href="#" class="btn-book">Ver disponibilidad</a>
+      </div>
+
+      <div class="hotel-card">
+        <div class="hotel-name">Romano Palace</div>
+        <div class="hotel-stars">⭐⭐⭐</div>
+        <p class="hotel-desc">Un clásico de Acapulco cruzando la calle de la playa. Excelente relación calidad-precio, alberca grande y balcones con vista al mar.</p>
+        <a href="#" class="btn-book">Ver disponibilidad</a>
+      </div>
+
+      <div class="hotel-card">
+        <div class="hotel-name">Emporio Acapulco</div>
+        <div class="hotel-stars">⭐⭐⭐⭐</div>
+        <p class="hotel-desc">A solo unos minutos caminando, cerca de Galerías Diana. Famoso por tener el área de albercas más grande de la Zona Dorada.</p>
+        <a href="#" class="btn-book">Ver disponibilidad</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    
+    <div class="wide-header-container">
+      <img src="/imagenes/Playa_Condesa_Baner.png" class="wide-header-image" alt="Vista panorámica de Playa Condesa">
+    </div>
+
+    <h2>Más Imágenes</h2>
+    <div class="photo-grid">
+      <div class="photo-card">
+        <img src="/imagenes/condesa1.jpg" alt="Actividades acuáticas en Condesa">
+      </div>
+      <div class="photo-card">
+        <img src="/imagenes/condesa2.jpg" alt="Clubes a pie de playa">
+      </div>
+      <div class="photo-card">
+        <img src="/imagenes/condesa3.jpg" alt="Atardecer con vista a la bahía">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
